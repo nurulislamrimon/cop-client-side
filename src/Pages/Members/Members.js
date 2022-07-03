@@ -1,21 +1,34 @@
 import React, { useEffect, useState } from 'react';
 import SetTitle from '../../Utilities/SetTitle';
+import Spinner from '../../Utilities/Spinner';
 
 const Members = () => {
     const [members, setMembers] = useState([]);
-    const limit = 10;
-    const page = 2;
+    const [limit, setLimit] = useState(5);
+    const [page, setPage] = useState(0);
+    const pageNumber = new Array(Math.ceil((members?.count || 1) / limit))
+    console.log(page);
 
     useEffect(() => {
         fetch(`http://localhost:5000/members?limit=${limit}&page=${page}`)
             .then(res => res.json())
             .then(data => setMembers(data))
     }, [limit, page])
-    console.log(members?.count);
     return (
-        <section className='h-full overflow-auto'>
+        <section className='h-full overflow-auto mt-5'>
             <SetTitle>Members</SetTitle>
-
+            <div className='flex justify-between'>
+                <div className="flex items-center text-3xl">
+                    <select name="membersDLimit" className='btn btn-ghost' id="limit" defaultValue={5} onChange={(e) => setLimit(e.target.value)}>
+                        <option value="3">3</option>
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                    </select>
+                </div>
+                <div class="btn-group justify-center items-center">
+                    {[...pageNumber.keys()].map(n => <button class={`btn ${page === n && 'btn-active'}`} onClick={e => setPage(e.target.innerText - 1)}>{n + 1}</button>)}
+                </div>
+            </div>
             <div className="grid lg:grid-cols-4 md:grid-cols-3 p-5 justify-center mx-auto gap-5">
                 {members?.result?.map((member, index) =>
                     <div key={index} class="card mx-w-96 bg-base-100 shadow-xl image-full">
@@ -28,12 +41,6 @@ const Members = () => {
                         </div>
                     </div>
                 )}
-            </div>
-            <div class="btn-group justify-center">
-                <button class="btn">1</button>
-                <button class="btn btn-active">2</button>
-                <button class="btn">3</button>
-                <button class="btn">4</button>
             </div>
         </section >
     );
