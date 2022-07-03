@@ -13,20 +13,21 @@ import Footer from './Pages/Shared/Footer';
 import Header from './Pages/Shared/Header';
 import CustomLink from './Utilities/CustomLink';
 import RequireAuth from './Utilities/RequireAuth';
+import Spinner from './Utilities/Spinner';
 
 
 function App() {
   const [user] = useAuthState(auth);
   const menus = [
-    <CustomLink key={1} to='/' className='btn btn-ghost w-full'>Home</CustomLink>,
-    <CustomLink key={2} to='/members' className='btn btn-ghost w-full'>Members</CustomLink>,
-    <CustomLink key={3} to='/finance' className='btn btn-ghost w-full'>Finance</CustomLink>,
-    <CustomLink key={4} to='/directors' className='btn btn-ghost w-full'>Directors</CustomLink>,
-    <CustomLink key={5} to='/executive' className='btn btn-ghost w-full'>Executive</CustomLink>,
-    !user?.uid ? <CustomLink key={6} to='/login' className='btn btn-ghost w-full'>Login</CustomLink> : <button onClick={() => signOut(auth)}>Log out</button>
+    <CustomLink key={1} to='/' className='btn btn-ghost w-full' > Home</CustomLink >,
+    <CustomLink key={2} to='/members' className='btn btn-ghost w-full' > Members</CustomLink >,
+    <CustomLink key={3} to='/finance' className='btn btn-ghost w-full' > Finance</CustomLink >,
+    <CustomLink key={4} to='/directors' className='btn btn-ghost w-full' > Directors</CustomLink >,
+    <CustomLink key={5} to='/executive' className='btn btn-ghost w-full' > Executive</CustomLink >,
+    !user?.uid ? <CustomLink key={6} to='/login' className='btn btn-ghost w-full' > Login</CustomLink > : <button key={7} onClick={() => signOut(auth)}>Log out</button>
   ]
   return (
-    <div className="App">
+    <div className="App" >
 
       <Header menus={menus} />
 
@@ -60,7 +61,7 @@ function App() {
       </Routes>
 
       <Footer />
-    </div>
+    </div >
   );
 }
 

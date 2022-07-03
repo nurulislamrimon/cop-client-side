@@ -3,11 +3,11 @@ import SetTitle from '../../Utilities/SetTitle';
 
 const Directors = () => {
     return (
-        <section className='h-[calc(100vh-100px)]'>
+        <section className='h-[calc(100vh-100px)]' >
             <SetTitle>Directors</SetTitle>
 
 
-        </section>
+        </section >
     );
 };
 

@@ -22,37 +22,37 @@ const Login = () => {
     loading && <Spinner />
     user && navigate('/');
     return (
-        <section className='h-[calc(100vh-100px)]'>
+        <section className='h-[calc(100vh-100px)]' >
             <SetTitle>Login</SetTitle>
 
-            <div className='w-3/4 lg:w-2/4 mx-auto text-center'>
-                <h1 className='text-4xl'>Log in</h1>
+            <div className='w-3/4 lg:w-2/4 mx-auto text-center' >
+                <h1 className='text-4xl' > Log in</h1 >
 
                 <form onSubmit={handleSubmit(onSubmit)}>
 
-                    <div class="form-control w-full">
-                        <label class="label">
-                            <span class="label-text">What is your name?</span>
-                        </label>
-                        <input type="text" placeholder="Type here" class="input input-bordered w-full" {...register("email", { required: true })} />
-                        {errors.email && <span>This field is required</span>}
-                    </div>
-                    <div class="form-control w-full">
-                        <label class="label">
-                            <span class="label-text">What is your name?</span>
-                        </label>
-                        <input type="text" placeholder="Type here" class="input input-bordered w-full" {...register("password", { required: true })} />
-                        {errors.password && <span>This field is required</span>}
-                    </div>
+                    <div className="form-control w-full">
+                        <label className="label">
+                            <span className="label-text">What is your name?</span>
+                        </label >
+                        <input type="text" placeholder="Type here" className="input input-bordered w-full" {...register("email", { required: true })} />
+                        {errors.email && <label className="label" > <small className='text-red-600' > This field is required</small ></label >}
+                    </div >
+                    <div className="form-control w-full" >
+                        <label className="label" >
+                            <span className="label-text" > What is your name ?</span >
+                        </label >
+                        <input type="text" placeholder="Type here" className="input input-bordered w-full" {...register("password", { required: true })} />
+                        {errors.password && <label className="label" > <small className='text-red-600' > This field is required</small ></label >}
+                    </div >
 
                     <input type="submit" className='btn btn-outline w-full mt-6' />
-                </form>
+                </form >
 
-            </div>
+            </div >
 
 
 
-        </section>
+        </section >
     );
 };
 
