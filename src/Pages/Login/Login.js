@@ -22,7 +22,7 @@ const Login = () => {
     loading && <Spinner />
     user && navigate('/');
     return (
-        <section className='h-[calc(100vh-100px)]' >
+        <section className='h-full' >
             <SetTitle>Login</SetTitle>
 
             <div className='w-3/4 lg:w-2/4 mx-auto text-center' >

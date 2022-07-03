@@ -1,30 +1,39 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import SetTitle from '../../Utilities/SetTitle';
 
 const Members = () => {
     const [members, setMembers] = useState([]);
-    const limit = 5;
+    const limit = 10;
     const page = 2;
-    fetch(`http://localhost:5000/members?limit=${limit}&page=${page}`)
-        .then(res => res.json())
-        .then(data => setMembers(data))
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/members?limit=${limit}&page=${page}`)
+            .then(res => res.json())
+            .then(data => setMembers(data))
+    }, [limit, page])
+    console.log(members?.count);
     return (
-        <section className='h-[calc(100vh-100px)]' >
+        <section className='h-full overflow-auto'>
             <SetTitle>Members</SetTitle>
 
-            <div className="container grid grid-cols-3 justify-center">
-                {members.map((member, index) =>
-                    <div key={index} class="card w-96 bg-base-100 shadow-xl image-full">
-                        <figure><img src="https://placeimg.com/400/225/arch" alt="Shoes" /></figure>
+            <div className="grid lg:grid-cols-4 md:grid-cols-3 p-5 justify-center mx-auto gap-5">
+                {members?.result?.map((member, index) =>
+                    <div key={index} class="card mx-w-96 bg-base-100 shadow-xl image-full">
+                        <figure><img src={member?.picture} alt="Shoes" /></figure>
                         <div class="card-body">
-                            <h2 class="card-title">Shoes!</h2>
-                            <p>If a dog chews shoes whose shoes does he choose?</p>
-                            <div class="card-actions justify-end">
-                                <button class="btn btn-primary">Buy Now</button>
-                            </div>
+                            <h2 class="card-title">{member?.name}</h2>
+                            <p>{member?.fatherName}</p>
+                            <p>{member?.email}</p>
+                            <p>{member?.phone}</p>
                         </div>
                     </div>
                 )}
+            </div>
+            <div class="btn-group justify-center">
+                <button class="btn">1</button>
+                <button class="btn btn-active">2</button>
+                <button class="btn">3</button>
+                <button class="btn">4</button>
             </div>
         </section >
     );

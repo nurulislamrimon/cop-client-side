@@ -3,7 +3,7 @@ import SetTitle from '../../Utilities/SetTitle';
 
 const Home = () => {
     return (
-        <section className='h-[calc(100vh-100px)] font-greeting flex flex-col justify-center' >
+        <section className='h-full font-greeting flex flex-col justify-center' >
             <SetTitle>Home</SetTitle>
 
             <h1 className='text-primary font-bold text-center text-9xl' > Welcome</h1 >

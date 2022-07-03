@@ -3,7 +3,7 @@ import SetTitle from '../../Utilities/SetTitle';
 
 const Executive = () => {
     return (
-        <section className='h-[calc(100vh-100px)]' >
+        <section className='h-full' >
             <SetTitle>Executive</SetTitle>
 
 

@@ -31,34 +31,36 @@ function App() {
 
       <Header menus={menus} />
 
-      <Routes>
-        <Route path='/' element={
-          // <RequireAuth>
-          <Home />
-          // </RequireAuth>
-        } />
-        <Route path='/members' element={
-          <RequireAuth>
-            <Members />
-          </RequireAuth>
-        } />
-        <Route path='/finance' element={
-          <RequireAuth>
-            <Finance />
-          </RequireAuth>
-        } />
-        <Route path='/directors' element={
-          <RequireAuth>
-            <Directors />
-          </RequireAuth>
-        } />
-        <Route path='/executive' element={
-          <RequireAuth>
-            <Executive />
-          </RequireAuth>
-        } />
-        <Route path='/login' element={<Login />} />
-      </Routes>
+      <div className="container mx-auto h-[calc(100vh-100px)] overflow-hidden">
+        <Routes>
+          <Route path='/' element={
+            // <RequireAuth>
+            <Home />
+            // </RequireAuth>
+          } />
+          <Route path='/members' element={
+            <RequireAuth>
+              <Members />
+            </RequireAuth>
+          } />
+          <Route path='/finance' element={
+            <RequireAuth>
+              <Finance />
+            </RequireAuth>
+          } />
+          <Route path='/directors' element={
+            <RequireAuth>
+              <Directors />
+            </RequireAuth>
+          } />
+          <Route path='/executive' element={
+            <RequireAuth>
+              <Executive />
+            </RequireAuth>
+          } />
+          <Route path='/login' element={<Login />} />
+        </Routes>
+      </div>
 
       <Footer />
     </div >
