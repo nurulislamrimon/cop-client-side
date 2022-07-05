@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import auth from '../../firebase.init';
 import SetTitle from '../../Utilities/SetTitle';
 import { useSignInWithEmailAndPassword } from 'react-firebase-hooks/auth';
@@ -20,7 +20,8 @@ const Login = () => {
         signInWithEmailAndPassword(data.email, data.password)
     };
     loading && <Spinner />
-    user && navigate('/');
+    user && navigate('/')
+
     return (
         <section className='h-full' >
             <SetTitle>Login</SetTitle>

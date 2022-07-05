@@ -1,32 +1,41 @@
 import React, { useEffect, useState } from 'react';
+import useMembersData from '../../CustomHooks/useMembersData';
 import SetTitle from '../../Utilities/SetTitle';
 import Spinner from '../../Utilities/Spinner';
+import axios from 'axios';
+
 
 const Members = () => {
     const [members, setMembers] = useState([]);
     const [limit, setLimit] = useState(5);
     const [page, setPage] = useState(0);
     const pageNumber = new Array(Math.ceil((members?.count || 1) / limit))
-    console.log(page);
+
+
+
 
     useEffect(() => {
         fetch(`http://localhost:5000/members?limit=${limit}&page=${page}`)
             .then(res => res.json())
             .then(data => setMembers(data))
-    }, [limit, page])
+    }, [limit, page]);
+
+    if (members.length === 0) {
+        return <Spinner />
+    }
     return (
         <section className='h-full overflow-auto mt-5'>
             <SetTitle>Members</SetTitle>
             <div className='flex justify-between'>
                 <div className="flex items-center text-3xl">
-                    <select name="membersDLimit" className='btn btn-ghost' id="limit" defaultValue={5} onChange={(e) => setLimit(e.target.value)}>
+                    <select name="membersDLimit" className='btn btn-ghost ml-5 mt-3' id="limit" defaultValue={5} onChange={(e) => setLimit(e.target.value)}>
                         <option value="3">3</option>
                         <option value="5">5</option>
                         <option value="10">10</option>
                     </select>
                 </div>
                 <div class="btn-group justify-center items-center">
-                    {[...pageNumber.keys()].map(n => <button class={`btn ${page === n && 'btn-active'}`} onClick={e => setPage(e.target.innerText - 1)}>{n + 1}</button>)}
+                    {[...pageNumber.keys()].map((n, index) => <button key={index} class={`btn ${page === n && 'btn-active'}`} onClick={e => setPage(e.target.innerText - 1)}>{n + 1}</button>)}
                 </div>
             </div>
             <div className="grid lg:grid-cols-4 md:grid-cols-3 p-5 justify-center mx-auto gap-5">

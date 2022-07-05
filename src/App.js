@@ -3,6 +3,8 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import { Route, Routes } from 'react-router-dom';
 import './App.css';
 import auth from './firebase.init';
+import MembersEdit from './Pages/AdminDashboard/MembersEdit/MembersEdit';
+import UpdateMemberInfo from './Pages/AdminDashboard/MembersEdit/UpdateMemberInfo';
 import Directors from './Pages/Directors/Directors';
 import Executive from './Pages/Executive/Executive';
 import Finance from './Pages/Finance/Finance';
@@ -13,7 +15,6 @@ import Footer from './Pages/Shared/Footer';
 import Header from './Pages/Shared/Header';
 import CustomLink from './Utilities/CustomLink';
 import RequireAuth from './Utilities/RequireAuth';
-import Spinner from './Utilities/Spinner';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
     <CustomLink key={3} to='/finance' className='btn btn-ghost w-full' > Finance</CustomLink >,
     <CustomLink key={4} to='/directors' className='btn btn-ghost w-full' > Directors</CustomLink >,
     <CustomLink key={5} to='/executive' className='btn btn-ghost w-full' > Executive</CustomLink >,
+    user?.uid && <CustomLink key={6} to='/editMembers' className='btn btn-ghost w-full' > Edit Members</CustomLink >,
     !user?.uid ? <CustomLink key={6} to='/login' className='btn btn-ghost w-full' > Login</CustomLink > : <button key={7} onClick={() => signOut(auth)}>Log out</button>
   ]
   return (
@@ -41,6 +43,16 @@ function App() {
           <Route path='/members' element={
             <RequireAuth>
               <Members />
+            </RequireAuth>
+          } />
+          <Route path='/editMembers' element={
+            <RequireAuth>
+              <MembersEdit />
+            </RequireAuth>
+          } />
+          <Route path='/editMembers/:id' element={
+            <RequireAuth>
+              <UpdateMemberInfo />
             </RequireAuth>
           } />
           <Route path='/finance' element={
